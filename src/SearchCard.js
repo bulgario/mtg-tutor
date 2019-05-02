@@ -13,13 +13,12 @@ class SearchCard extends React.Component {
         fetch('https://api.scryfall.com/sets')
         .then(response => response.json())
         .then(response => { 
-
-            console.log(response)
-            // response.data.forEach(data => {
-            //     this.setState({cardSet: data.name})
-            // });
+            response.data.forEach(data => {
+                this.setState(prevState => ({
+                    cardSet: [...prevState.cardSet, data.name]
+                }))
+            });
         })
-     
     }
 
     selectorOptions = () => {
