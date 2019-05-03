@@ -11,19 +11,21 @@ class SearchCard extends React.Component {
 
     componentDidMount() {
         fetch('https://api.scryfall.com/sets')
-        .then(response => response.json())
-        .then(response => { 
-            response.data.forEach(data => {
-                this.setState(prevState => ({
-                    cardSet: [...prevState.cardSet, data.name]
-                }))
-            });
-        })
+            .then(response => response.json())
+            .then(response => {
+                response.data.forEach(data => {
+                    this.setState(prevState => ({
+                        cardSet: [...prevState.cardSet, data.name]
+                    }))
+                });
+            })
     }
 
-    selectorOptions = () => {
+    cardSelect = () => {
         const { cardSet } = this.state
-        console.log(cardSet)
+        return cardSet.map(function (cardSet) {
+            return (<option value={cardSet}>{cardSet}</option>)
+        })
     }
 
     // componentDidMount() {
@@ -35,13 +37,14 @@ class SearchCard extends React.Component {
     //             console.log(data.image_uris.small)
     //         });
     //     })
-     
+
     // }
 
     render() {
         return (
-           <select onClick={this.selectorOptions}>
-           </select>
+            <select onClick={this.cardSelect}>
+                {this.cardSelect()}
+            </select>
         )
     }
 

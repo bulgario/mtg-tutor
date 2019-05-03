@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App App-header">
      <div>
-        <img src={mtglogo}/>
+        {/* <img src={mtglogo}/> */}
       </div>
       <header>
         <a>Magic Tutor</a> 
