@@ -5,8 +5,9 @@ class SearchCard extends React.Component {
         super()
         this.state = {
             cardSet: [],
-            choosenCardSet: []
+            choosenCardSet: ""
         }
+        this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount() {
@@ -28,21 +29,14 @@ class SearchCard extends React.Component {
         })
     }
 
-    // componentDidMount() {
-    //     fetch('https://api.scryfall.com/cards')
-    //     .then(response => response.json())
-    //     .then(response => {
-    //         response.data.forEach(data => {
-    //             // this.setState({cardImage: data.image_uris.small})
-    //             console.log(data.image_uris.small)
-    //         });
-    //     })
-
-    // }
+   handleChange (event) {
+       this.setState({choosenCardSet: event.target.value})
+   }
 
     render() {
+        console.log(this.state.choosenCardSet)
         return (
-            <select onClick={this.cardSelect}>
+            <select onChange={this.handleChange}>
                 {this.cardSelect()}
             </select>
         )
